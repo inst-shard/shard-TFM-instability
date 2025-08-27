@@ -1,0 +1,38 @@
+# EIP-1559 Single Shard Simulation Configuration
+
+# EIP-1559 core parameters
+eip1559:
+  target_load: 0.5          # L_target: target load (50%)
+  base_fee_delta: 0.125     # δ: price update rate (EIP-1559 standard)
+  initial_base_price: 1.0   # P*: initial equilibrium price (1 gwei)
+  gas_limit: 30000000       # Gmax: block gas limit (30M gas)
+
+# Demand elasticity parameters
+demand:
+  price_elasticity: 4.4 # λ in T = C * P^(-λ) - high elasticity for binary block states
+  base_demand: 15000000     # C in T = C * P^(-λ) (15M gas when Price=1)
+
+# Perturbation parameters to avoid false equilibrium
+perturbation:
+  enabled: false            # whether to enable the perturbation
+  amplitude: 0.05           # amplitude of the sine wave (5%)
+  period: 100               # period of the sine wave in blocks
+  start_block: 1            # block number to start the perturbation
+
+# Simulation parameters
+simulation:
+  steps: 5000       # number of simulation steps
+  time_step: 12.0           # time step (12 seconds = 1 block)
+
+# Demand shock configuration
+shock:
+  enabled: true             # whether to inject demand shock
+  start_block: 1         # block number to start shock
+  end_block: 2            # block number to end shock (exclusive)
+  multiplier: 15           # demand multiplier during shock - testing high load spike
+
+# Output configuration
+output:
+  print_interval: 200       # print status every N blocks
+  detailed_output: false    # whether to output detailed information
+  log_file: "simulation.log" # output log file name

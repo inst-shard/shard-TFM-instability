@@ -1,0 +1,45 @@
+simulation:
+  total_steps: 5000
+  l_target: 0.5
+  delta: 0.125
+  perturbation:
+    enabled: false
+  demand_shock:
+    enabled: true
+    start_step: 100
+    end_step: 101
+    multiplier: 15
+    target_shards: [0]
+
+network:
+  num_shards: 3
+
+shards:
+  - id: 0
+    g_max: 2000000 
+  - id: 1
+    g_max: 2000000    
+  - id: 2
+    g_max: 2000000    
+
+demand:
+  base_demand_matrix:
+    - [300000, 0, 0]
+    - [350000, 300000, 175000]
+    - [350000, 175000, 300000]
+    
+  epsilon_matrix:
+    - [0.0, 1.5, 1.5]
+    - [1.5, 0.0, 1.5]
+    - [1.5, 1.5, 0.0]
+
+  lambda_matrix:
+    - [1.5, 1.5, 1.5]
+    - [1.5, 1.5, 1.5]
+    - [1.5, 1.5, 1.5]
+    
+delay:
+  max_delay: 5
+  weights: [0, 0, 0, 0, 1]
+
+
